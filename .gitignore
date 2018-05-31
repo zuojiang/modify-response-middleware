@@ -1,0 +1,7 @@
+node_modules
+*.log
+.*.swp
+.direcotry
+.DS_Store
+Thumbs.db
+*~
