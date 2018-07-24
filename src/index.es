@@ -1,8 +1,8 @@
 import zlib from 'zlib'
 import brotli from 'brotli'
 
-module.exports = function (modify) {
-  return(req, res, next) => {
+module.exports = function(modify) {
+  return (req, res, next) => {
     const _end = res.end
     const list = []
     res.write = function(chunk) {
@@ -20,11 +20,11 @@ module.exports = function (modify) {
       }
       let _content = decoding(res, content)
       _content = modify(_content, req, res)
-      if (_content) {
+      if (Buffer.isBuffer(_content) || typeof _content == 'string') {
         content = encoding(res, _content)
-      }
-      if (!res.headersSent) {
-        res.setHeader('content-length', content.length)
+        if (!res.headersSent) {
+          res.setHeader('content-length', content.length)
+        }
       }
       _end.call(res, content)
     }

@@ -1,6 +1,6 @@
 {
   "name": "modify-response-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Middleware that allows you to modify the response data.",
   "main": "lib/index.js",
   "scripts": {

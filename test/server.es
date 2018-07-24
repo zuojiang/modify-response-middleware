@@ -5,14 +5,19 @@ import modifyRes from '../src/index.es'
 const app = express()
 
 app.use(modifyRes((content, req, res) => {
+  console.log(req.url);
   console.log(content.toString());
   return content
 }))
 
 app.get('/test', modifyRes((content, req, res) => {
-  const data = JSON.parse(content.toString())
-  data.age += 2
-  return Buffer.from(JSON.stringify(data))
+  try {
+    const data = JSON.parse(content.toString())
+    data.age += 2
+    return Buffer.from(JSON.stringify(data))
+  } catch (e) {
+    console.error(e);
+  }
 }), (req, res) => {
   res.json({
     name: 'Tom',
