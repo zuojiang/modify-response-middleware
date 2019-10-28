@@ -5,7 +5,7 @@ Middleware that allows you to modify the response data.
 
 ### Installation
 ```sh
-$ npm i modify-response-middleware
+npm i modify-response-middleware
 ```
 
 ### Node.js
@@ -17,9 +17,13 @@ import modifyRes from 'modify-response-middleware'
 const app = express()
 
 app.use(modifyRes((content, req, res) => {
-  const data = JSON.parse(content.toString())
-  data.age += 2
-  return Buffer.from(JSON.stringify(data))
+  if (content) {
+    const data = JSON.parse(content.toString())
+    data.age += 2
+    return Buffer.from(JSON.stringify(data))
+  }
+}, {
+  noCache: true, // set request header "cache-control: no-cache", avoiding 304 responses
 }))
 
 app.get((req, res) => {

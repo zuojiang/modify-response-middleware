@@ -1,6 +1,6 @@
 {
   "name": "modify-response-middleware",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Middleware that allows you to modify the response data.",
   "main": "lib/index.js",
   "scripts": {
@@ -38,6 +38,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-watch": "^2.0.7",
     "express": "^4.16.3",
-    "http-proxy-middleware": "^0.18.0"
+    "http-proxy-middleware": "^0.18.0",
+    "json-server": "^0.15.1"
   }
 }

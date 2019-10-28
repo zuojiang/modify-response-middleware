@@ -1,8 +1,11 @@
 import zlib from 'zlib'
 import brotli from 'brotli'
 
-module.exports = function(modify) {
+module.exports = function(modify, opts = {}) {
   return (req, res, next) => {
+    if (opts.noCache) {
+      req.headers['cache-control'] = 'no-cache'
+    }
     const _end = res.end
     const list = []
     res.write = function(chunk) {
